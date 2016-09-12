@@ -28,20 +28,22 @@ T = {
          "near surface disposal" : [None] #need to add a null
 }
 
-n = int(input("Input number of niches "))
+#may need to add disposal as a null option for every case
 
-c0 = "mineandmill"
-numniche = [c0]
+n = int(input("Input number of niches ")) #User inputs the number of niches desired
 
-i = 0
+c0 = "mineandmill" #initial key, fuel cycle starts with mining
+numniche = [c0] #defines the list in which each node will be stored
 
-while i < n:
+i = 0 #for iteration through the while
+
+while i < n:                                 #Iterates through the desired number of niches
     if numniche[i] == None:
         print("Marks the end of the cycle")
         break
     print(numniche[i])
-    ci = random.choice(T[numniche[i]])
-    numniche.append(ci)
+    ci = random.choice(T[numniche[i]])       #randomly selects new key from list to act as a node and a new key
+    numniche.append(ci)                      #adds new node to the path
     i = i + 1
         
 
