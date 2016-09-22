@@ -10,17 +10,19 @@ import random
 T = {
     "mine" : {"conversion", "enrichment", "hwr"},
     "conversion" : {"enrichment", "uo2 fabrication", "uo2 fabrication", "uo2 fabrication", "triso fabrication", "hwr"}, 
-    "enrichment" : {"uo2 fabrication", "triso fabrication", "hwr"},
+    "enrichment" : {"uo2 fabrication", "triso fabrication", "hwr", "fr"},
     "uo2 fabrication" : {"lwr", "htgr", "rbmk"},
-    "triso fabrication" : {"pebble bed"},
+    "triso fabrication" : {"pb"},
+    "fr" : {"storage", "dry reprocessing", "purex", "deep geological repository", "near surface repository"},
     "lwr" : {"storage", "dry reprocessing","purex","near surface repository", "deep geological repository"},
     "hwr" : {"storage", "near surface repository", "deep geological repository"},
     "htgr" : {"storage", "dry reprocessing","purex","near surface repository", "deep geological repository"},         
     "rbmk" : {"storage", "dry reprocessing","purex","near surface repository", "deep geological repository"},         
-    "pebble bed" : {"near surface repository", "deep geological repository"},         
+    "pb" : {"near surface repository", "deep geological repository"},         
     "storage" : {"dry reprocessing","purex","near surface repository", "deep geological repository"},         
-    "dry reprocessing" : {"conversion","enrichment","hwr"},
-    "purex" : {"conversion", "enrichment", "hwr"},
+    "dry reprocessing" : {"conversion","enrichment","hwr", "mox"},
+    "purex" : {"conversion", "enrichment", "hwr", "mox"},
+    "mox fabrication" : {"fr", "lwr", "htgr", "rbmk"},
     "deep geological repository" : {None},          
     "near surface repository" : {None} #need to add a null
 }
@@ -33,22 +35,4 @@ def test(niches, nichelist = {"mine"}, choice = "mine"):
          nichelist.add(choice)
          return test(niches-1, nichelist, choice)
 
-
-
-
-
-
-
-
-def randomniche(niches, startkey = "mine"):    
-    
-    nichelist = set(startkey)
-    i = 0
-    while i < niches:
-        if None in nichelist:
-            break
-        ci = random.choice(T[nichelist(i)])
-        nichelist.update(ci)
-        i = i + 1
-    return nichelist
     
